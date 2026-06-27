@@ -1,19 +1,21 @@
 import { useState } from 'react';
-import { ArrowLeft, CreditCard, Truck, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Truck, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { medicineService } from '../services/medicineService';
 
 export default function Checkout({ onNavigate }) {
     const { cartItems, cartSubtotal, clearCart } = useCart();
+    const { user } = useAuth();
     const subtotal = cartSubtotal;
     const shipping = subtotal > 1000 ? 0 : 150;
     const discount = subtotal > 500 ? 50 : 0;
     const total = Math.max(0, subtotal - discount + shipping);
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [address, setAddress] = useState('');
+    const [name, setName] = useState(user?.name || '');
+    const [email, setEmail] = useState(user?.email || '');
+    const [phone, setPhone] = useState(user?.phone || '');
+    const [address, setAddress] = useState(user?.shippingAddress || '');
     const [city, setCity] = useState('Lahore');
     const [paymentMethod, setPaymentMethod] = useState('cod');
     const [isPlaced, setIsPlaced] = useState(false);
@@ -23,13 +25,14 @@ export default function Checkout({ onNavigate }) {
 
     const handlePlaceOrder = async (e) => {
         if (e) e.preventDefault();
-        if (!name || !phone || !address || cartItems.length === 0) return;
+        if (!name || !email || !phone || !address || cartItems.length === 0) return;
 
         setLoading(true);
         setError(null);
 
         const orderData = {
             name,
+            email,
             phone,
             address,
             city,
@@ -158,9 +161,10 @@ export default function Checkout({ onNavigate }) {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="block text-sm font-bold text-slate-800">Email Address (Optional)</label>
+                            <label className="block text-sm font-bold text-slate-800">Email Address <span className="text-red-500">*</span></label>
                             <input
                                 type="email"
+                                required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="name@example.com"
@@ -201,36 +205,20 @@ export default function Checkout({ onNavigate }) {
                     {/* Payment Option Selection */}
                     <div className="space-y-3">
                         <label className="block text-sm font-bold text-slate-800">Payment Option</label>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 gap-4">
                             <div
                                 onClick={() => setPaymentMethod('cod')}
-                                className={`border rounded-2xl p-4 flex items-center justify-between cursor-pointer transition-all ${paymentMethod === 'cod' ? 'border-[#006a4e] bg-[#006a4e]/5' : 'border-slate-200 hover:border-slate-300 bg-slate-50/30'}`}
+                                className="border border-[#006a4e] bg-[#006a4e]/5 rounded-2xl p-4 flex items-center justify-between cursor-pointer transition-all"
                             >
                                 <div className="flex items-center gap-3">
-                                    <Truck className={`text-xl ${paymentMethod === 'cod' ? 'text-[#006a4e]' : 'text-slate-500'}`} />
+                                    <Truck className="text-xl text-[#006a4e]" />
                                     <div>
                                         <span className="block text-xs md:text-sm font-bold text-slate-800">Cash on Delivery</span>
                                         <span className="text-[10px] text-slate-400 font-semibold">Pay with cash upon delivery</span>
                                     </div>
                                 </div>
-                                <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${paymentMethod === 'cod' ? 'border-[#006a4e]' : 'border-slate-300'}`}>
-                                    {paymentMethod === 'cod' && <div className="w-2.5 h-2.5 rounded-full bg-[#006a4e]" />}
-                                </div>
-                            </div>
-
-                            <div
-                                onClick={() => setPaymentMethod('card')}
-                                className={`border rounded-2xl p-4 flex items-center justify-between cursor-pointer transition-all ${paymentMethod === 'card' ? 'border-[#006a4e] bg-[#006a4e]/5' : 'border-slate-200 hover:border-slate-300 bg-slate-50/30'}`}
-                            >
-                                <div className="flex items-center gap-3">
-                                    <CreditCard className={`text-xl ${paymentMethod === 'card' ? 'text-[#006a4e]' : 'text-slate-500'}`} />
-                                    <div>
-                                        <span className="block text-xs md:text-sm font-bold text-slate-800">Credit / Debit Card</span>
-                                        <span className="text-[10px] text-slate-400 font-semibold">Visa, Mastercard, PayPak</span>
-                                    </div>
-                                </div>
-                                <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${paymentMethod === 'card' ? 'border-[#006a4e]' : 'border-slate-300'}`}>
-                                    {paymentMethod === 'card' && <div className="w-2.5 h-2.5 rounded-full bg-[#006a4e]" />}
+                                <div className="w-4 h-4 rounded-full border border-[#006a4e] flex items-center justify-center">
+                                    <div className="w-2.5 h-2.5 rounded-full bg-[#006a4e]" />
                                 </div>
                             </div>
                         </div>

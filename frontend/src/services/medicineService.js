@@ -145,7 +145,8 @@ export const medicineService = {
             headers['Authorization'] = `Bearer ${token}`;
         }
 
-        const response = await fetch('http://localhost:5000/api/medicines/upload-image', {
+        const hostname = window.location.hostname;
+        const response = await fetch(`http://${hostname}:5000/api/medicines/upload-image`, {
             method: 'POST',
             body: formData,
             headers,
@@ -174,7 +175,8 @@ export const medicineService = {
             headers['Authorization'] = `Bearer ${token}`;
         }
 
-        const response = await fetch('http://localhost:5000/api/prescriptions/upload', {
+        const hostname = window.location.hostname;
+        const response = await fetch(`http://${hostname}:5000/api/prescriptions/upload`, {
             method: 'POST',
             body: formData,
             headers,
@@ -209,6 +211,6 @@ export const medicineService = {
     },
 
     async updateOrderStatus(id, status) {
-        return api.put(`/orders/${id}`, { status });
+        return api.put(`/orders/${id}/status`, { status });
     }
 };

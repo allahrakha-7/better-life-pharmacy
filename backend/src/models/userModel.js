@@ -38,6 +38,13 @@ const userSchema = new mongoose.Schema({
     allergies: {
         type: String,
         default: ''
+    },
+    resetPasswordOTP: {
+        type: String,
+        default: ''
+    },
+    resetPasswordExpires: {
+        type: Date
     }
 }, {
     timestamps: true

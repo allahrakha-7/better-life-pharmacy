@@ -136,6 +136,7 @@ export default function Navbar({ onNavigate }) {
                     )}
                 </div>
 
+
                 {/* 3. Search Bar */}
                 <div ref={searchRef} className="flex-1 max-w-[20rem] md:max-w-md mx-2 md:mx-4 relative">
                     <div className="bg-white border border-[#e2e8f0] rounded-2xl flex items-center px-3 md:px-4 py-2 shadow-sm hover:border-[#006a4e] focus-within:border-[#006a4e] focus-within:ring-2 focus-within:ring-[#006a4e]/10 transition-all duration-200">
@@ -213,7 +214,7 @@ export default function Navbar({ onNavigate }) {
                     {user && (user.role === 'admin' || user.isAdmin) && (
                         <button
                             onClick={() => onNavigate && onNavigate('admin')}
-                            className="hidden lg:flex items-center gap-1 text-xs font-bold text-amber-600 hover:text-amber-800 bg-amber-50 hover:bg-amber-100/80 px-3 py-1.5 rounded-full transition-colors shrink-0"
+                            className="hidden lg:flex items-center gap-1 text-xs font-bold text-white hover:text-white bg-[#006a4e] hover:bg-[#00543e] px-3 py-1.5 rounded-full transition-colors shrink-0"
                         >
                             <ShieldAlert size={14} />
                             <span>Admin</span>
@@ -279,7 +280,7 @@ export default function Navbar({ onNavigate }) {
                     ) : (
                         <button
                             onClick={() => onNavigate && onNavigate('login')}
-                            className="hidden sm:block text-slate-700 hover:text-[#006a4e] text-xs md:text-sm font-bold transition-colors cursor-pointer select-none shrink-0"
+                            className="text-slate-700 hover:text-[#006a4e] text-xs md:text-sm font-bold transition-colors cursor-pointer select-none shrink-0"
                         >
                             Sign In
                         </button>

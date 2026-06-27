@@ -1,4 +1,9 @@
-const BASE_URL = 'http://localhost:5000/api';
+const getBaseUrl = () => {
+    const hostname = window.location.hostname;
+    return `http://${hostname}:5000/api`;
+};
+
+const BASE_URL = getBaseUrl();
 
 async function request(path, options = {}) {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');

@@ -46,7 +46,7 @@ export const createOrder = async (req, res) => {
             subtotal,
             shipping,
             total,
-            status: 'Pending Review'
+            status: 'pending'
         });
 
         res.status(201).json(order);

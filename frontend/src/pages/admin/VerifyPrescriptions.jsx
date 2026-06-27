@@ -76,8 +76,9 @@ export default function VerifyPrescriptions({ onNavigate }) {
                 <div className="grid grid-cols-1 gap-6">
                     {pendingPrescriptions.length > 0 ? (
                         pendingPrescriptions.map((p) => {
+                            const hostname = window.location.hostname;
                             const imageSrc = p.fileUrl
-                                ? (p.fileUrl.startsWith('http') ? p.fileUrl : `http://localhost:5000${p.fileUrl}`)
+                                ? (p.fileUrl.startsWith('http') ? p.fileUrl : `http://${hostname}:5000${p.fileUrl}`)
                                 : 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=80';
 
                             return (

@@ -8,7 +8,7 @@ export default function Hero({ onNavigate }) {
                 <img
                     src={heroImg}
                     alt="Better Life Hero"
-                    className="w-full h-full object-cover object-center transform scale-102 transition-transform duration-10000 ease-out hover:scale-100"
+                    className="w-full h-full object-cover object-left md:object-center transform scale-102 transition-transform duration-10000 ease-out hover:scale-100"
                 />
                 {/* Gradient Overlay for Text Readability */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent"></div>
@@ -28,13 +28,13 @@ export default function Hero({ onNavigate }) {
                     </p>
 
                     <div className="flex flex-wrap gap-4 pt-2">
-                        <button 
+                        <button
                             onClick={() => onNavigate && onNavigate('medicines')}
                             className="bg-[#dffe5e] active:scale-95 text-[#033126] border border-[#033126] hover:border-[#dffe5e] font-semibold px-9 py-2.5 rounded-full shadow-lg transition-all cursor-pointer"
                         >
                             Shop Now
                         </button>
-                        <button 
+                        <button
                             onClick={() => onNavigate && onNavigate('medicines')}
                             className="bg-[#033126] active:scale-95 text-white font-semibold px-9 py-2.5 rounded-full border border-white/30 hover:border-white backdrop-blur-sm transition-all cursor-pointer"
                         >

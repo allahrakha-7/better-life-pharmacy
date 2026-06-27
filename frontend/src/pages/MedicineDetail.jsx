@@ -204,10 +204,10 @@ export default function MedicineDetail({ onNavigate }) {
                             {/* Add to Cart button */}
                             <button
                                 onClick={handleAddToCart}
-                                className="flex-1 bg-[#006a4e] hover:bg-[#00543e] active:scale-98 text-white font-bold py-3.5 px-6 rounded-full flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer text-sm"
+                                className="flex-1 bg-[#006a4e] hover:bg-[#00543e] active:scale-98 text-white font-bold py-3.5 px-4 md:px-6 rounded-full flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer text-xs md:text-sm shrink-0"
                             >
-                                <ShoppingBasket size={18} />
-                                Add to Basket (Rs. {discountPrice * quantity})
+                                <ShoppingBasket size={18} className="shrink-0" />
+                                <span className="truncate">Add to Basket (Rs. {discountPrice * quantity})</span>
                             </button>
                         </div>
 

@@ -112,14 +112,14 @@ export default function MedicineCard({ product, viewMode = 'grid', onNavigate, o
                     {renderPriceWithDiscount()}
                     <button 
                         onClick={handleAddClick}
-                        className={`active:scale-95 font-bold px-3 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl text-[10px] md:text-xs transition-all flex items-center justify-center gap-1 cursor-pointer w-full sm:w-auto ${
+                        className={`active:scale-95 font-bold px-2.5 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl text-[10px] md:text-xs transition-all flex items-center justify-center gap-1 cursor-pointer w-full sm:w-auto shrink-0 ${
                             isInCart 
                                 ? 'bg-[#dffe5e] text-[#033126]' 
                                 : 'bg-[#006a4e] text-white hover:bg-[#00543e]'
                         }`}
                     >
-                        <ShoppingCart size={12} />
-                        {isInCart ? 'Added' : 'Add to Cart'}
+                        <ShoppingCart size={12} className="shrink-0" />
+                        <span className="truncate">{isInCart ? 'Added' : 'Add to Cart'}</span>
                     </button>
                 </div>
             </div>

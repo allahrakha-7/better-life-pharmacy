@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Hero from '../components/Hero';
-import { ArrowRight, ShieldCheck, Truck, Clock, Award, Heart } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Truck, Clock, Award, Heart, ShoppingCart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { medicineService } from '../services/medicineService';
 
@@ -217,12 +217,12 @@ export default function Home({ onNavigate }) {
         loadHomeData();
     }, []);
 
-    const featured = medicines.length >= 4
+    const featured = medicines.length > 0
         ? medicines.slice(0, 4)
         : FEATURED_PRODUCTS.map(p => ({ ...p, _id: p.id, price: 380, packageSize: p.pieces }));
 
-    const recent = medicines.length >= 8
-        ? medicines.slice(4, 12)
+    const recent = medicines.length > 0
+        ? (medicines.length >= 8 ? medicines.slice(4, 12) : medicines.slice(0, 8))
         : RECENT_PRODUCTS.map(p => ({ ...p, _id: p.id, price: 420, packageSize: p.pieces }));
 
     const handleNextTestimonial = () => {
@@ -326,12 +326,13 @@ export default function Home({ onNavigate }) {
                                                 addToCart(prod, 1);
                                             }
                                         }}
-                                        className={`flex-1 active:scale-95 py-2 px-3 md:py-2.5 md:px-4 rounded-full text-[10px] md:text-xs transition-all cursor-pointer ${isInCart(prod)
+                                        className={`flex-1 active:scale-95 py-2 px-2.5 md:py-2.5 md:px-4 rounded-full text-[10px] md:text-xs transition-all cursor-pointer flex items-center justify-center gap-1 shrink-0 ${isInCart(prod)
                                             ? 'bg-[#dffe5e] hover:bg-[#d4f54e] text-[#033126] font-extrabold shadow-sm'
                                             : 'bg-[#006a4e] hover:bg-[#00543e] text-white font-bold'
                                             }`}
                                     >
-                                        {isInCart(prod) ? 'Added' : 'Add to Cart'}
+                                        <ShoppingCart size={12} className="shrink-0" />
+                                        <span className="truncate">{isInCart(prod) ? 'Added' : 'Add to Cart'}</span>
                                     </button>
                                     <button
                                         onClick={(e) => {
@@ -468,12 +469,13 @@ export default function Home({ onNavigate }) {
                                             addToCart(prod, 1);
                                         }
                                     }}
-                                    className={`flex-1 active:scale-95 py-2 px-3 md:py-2.5 md:px-4 rounded-full text-[10px] md:text-xs transition-all cursor-pointer ${isInCart(prod)
+                                    className={`flex-1 active:scale-95 py-2 px-2.5 md:py-2.5 md:px-4 rounded-full text-[10px] md:text-xs transition-all cursor-pointer flex items-center justify-center gap-1 shrink-0 ${isInCart(prod)
                                         ? 'bg-[#dffe5e] hover:bg-[#d4f54e] text-[#033126] font-extrabold shadow-sm'
                                         : 'bg-[#006a4e] hover:bg-[#00543e] text-white font-bold'
                                         }`}
                                 >
-                                    {isInCart(prod) ? 'Added' : 'Add to Cart'}
+                                    <ShoppingCart size={12} className="shrink-0" />
+                                    <span className="truncate">{isInCart(prod) ? 'Added' : 'Add to Cart'}</span>
                                 </button>
                                 <button
                                     onClick={(e) => {

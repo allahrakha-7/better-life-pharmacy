@@ -21,6 +21,14 @@ export const authService = {
         return api.put('/auth/profile', profileData);
     },
 
+    async forgotPassword(email) {
+        return api.post('/auth/forgot-password', { email });
+    },
+
+    async resetPassword(email, otp, newPassword) {
+        return api.post('/auth/reset-password', { email, otp, newPassword });
+    },
+
     logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
