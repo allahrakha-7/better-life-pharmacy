@@ -3,6 +3,10 @@ const getBaseUrl = () => {
         return import.meta.env.VITE_API_URL;
     }
     const hostname = window.location.hostname;
+    // Smart production fallback to avoid build environment discrepancies
+    if (hostname !== 'localhost' && hostname !== '127.0.0.1' && !hostname.startsWith('192.168.')) {
+        return 'https://better-life-pharmacy-kpe9.onrender.com/api';
+    }
     return `http://${hostname}:5000/api`;
 };
 
