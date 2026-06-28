@@ -18,7 +18,6 @@ export default function Footer({ onNavigate }) {
             <li><button onClick={() => onNavigate('cart')} className="text-emerald-100/80 hover:text-[#dffe5e] transition-colors cursor-pointer text-left font-semibold bg-transparent border-none outline-none">View Cart</button></li>
             <li><button onClick={() => onNavigate('upload-prescription')} className="text-emerald-100/80 hover:text-[#dffe5e] transition-colors cursor-pointer text-left font-semibold bg-transparent border-none outline-none">Upload Prescription</button></li>
             <li><button onClick={() => onNavigate('track-order')} className="text-emerald-100/80 hover:text-[#dffe5e] transition-colors cursor-pointer text-left font-semibold bg-transparent border-none outline-none">Track Order</button></li>
-            <li><button onClick={() => onNavigate('admin')} className="text-emerald-100/80 hover:text-[#dffe5e] transition-colors cursor-pointer text-left font-semibold bg-transparent border-none outline-none">Admin Portal</button></li>
           </ul>
         </div>
         <div>
