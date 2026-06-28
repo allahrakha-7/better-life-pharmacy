@@ -30,6 +30,10 @@ const __dirname = path.dirname(__filename);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Mount API Routes
+app.get('/', (req, res) => {
+    res.json({ message: 'Better Life Pharmacy API is running...' });
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/medicines', medicineRoutes);
 app.use('/api/orders', orderRoutes);
