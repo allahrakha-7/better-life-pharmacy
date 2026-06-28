@@ -37,7 +37,11 @@ export default function Footer({ onNavigate }) {
           </p>
           <div className="mt-5 pt-1">
             <span className="text-xs font-bold text-[#dffe5e] block tracking-wide uppercase">Call Helpline</span>
-            <span className="text-base font-extrabold text-white">0800-BETTER-LIFE</span>
+            <span className="text-base font-extrabold text-white">+92 309 8893002</span>
+          </div>
+          <div className="mt-5 pt-1">
+            <span className="text-xs font-bold text-[#dffe5e] block tracking-wide uppercase">Email</span>
+            <span className="text-base font-extrabold text-white">betterlifepharmacy@gmail.com</span>
           </div>
         </div>
       </div>
