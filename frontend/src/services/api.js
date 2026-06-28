@@ -1,9 +1,12 @@
 const getBaseUrl = () => {
+    if (import.meta.env.VITE_API_URL) {
+        return import.meta.env.VITE_API_URL;
+    }
     const hostname = window.location.hostname;
     return `http://${hostname}:5000/api`;
 };
 
-const BASE_URL = getBaseUrl();
+export const BASE_URL = getBaseUrl();
 
 async function request(path, options = {}) {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');

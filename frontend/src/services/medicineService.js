@@ -1,4 +1,4 @@
-import { api } from './api';
+import { api, BASE_URL } from './api';
 
 // Import all local medicine assets
 import bComplexImg from '../assets/images/B_Complex.png';
@@ -145,8 +145,7 @@ export const medicineService = {
             headers['Authorization'] = `Bearer ${token}`;
         }
 
-        const hostname = window.location.hostname;
-        const response = await fetch(`http://${hostname}:5000/api/medicines/upload-image`, {
+        const response = await fetch(`${BASE_URL}/medicines/upload-image`, {
             method: 'POST',
             body: formData,
             headers,
@@ -175,8 +174,7 @@ export const medicineService = {
             headers['Authorization'] = `Bearer ${token}`;
         }
 
-        const hostname = window.location.hostname;
-        const response = await fetch(`http://${hostname}:5000/api/prescriptions/upload`, {
+        const response = await fetch(`${BASE_URL}/prescriptions/upload`, {
             method: 'POST',
             body: formData,
             headers,
